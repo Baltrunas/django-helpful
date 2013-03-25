@@ -1,4 +1,1 @@
-django-useful
-=============
-
-Useful things for django!
+Перенести views и шаблон для форм
