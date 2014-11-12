@@ -21,8 +21,8 @@ msgstr ""
 
 #: templatetags/gcommon.py:12
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: templatetags/gcommon.py:14
 msgid "No"
-msgstr ""
+msgstr "Нет"

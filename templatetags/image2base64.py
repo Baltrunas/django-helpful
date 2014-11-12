@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
-from django import template
-
 import base64
 import mimetypes
+
+from django import template
+
 
 register = template.Library()
 
