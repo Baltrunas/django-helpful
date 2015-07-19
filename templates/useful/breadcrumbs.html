@@ -1,0 +1,35 @@
+<ol itemscope itemtype='http://schema.org/BreadcrumbList' class='b-breadcrumbs'>
+
+	<li itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem' class='b-breadcrumb'>
+		<a itemprop='item' href='/' class='b-breadcrumb__url'>
+			<span itemprop='name'  class='b-breadcrumb__name'>
+				{% firstof site.name 'Main' %}
+			</span>
+		</a>
+		<meta itemprop='position' content='0'>
+	</li>
+	{% if url != '/' %}›{% endif %}
+
+	{% for item in breadcrumbs %}
+		{% if not forloop.last %}
+			<li itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem' class='b-breadcrumb'>
+				<a itemprop='item' href='{{ item.get_absolute_url }}' class='b-breadcrumb__url'>
+					<span itemprop='name'  class='b-breadcrumb__name'>
+						{% firstof item.name item.header item.title %}
+					</span>
+				</a>
+				<meta itemprop='position' content='{{ forloop.counter }}'>
+			</li>
+			›
+		{% else %}
+			<li itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem' class='b-breadcrumb m-breadcrumb__last'>
+				<span itemprop='item' href='{{ item.get_absolute_url }}' class='b-breadcrumb__url'>
+					<span itemprop='name'  class='b-breadcrumb__name'>
+						{% firstof item.name item.header item.title %}
+					</span>
+				</span>
+				<meta itemprop='position' content='{{ forloop.counter }}'>
+			</li>
+		{% endif %}
+	{% endfor %}
+</ol>
