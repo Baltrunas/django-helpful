@@ -1,27 +1,17 @@
 from setuptools import setup, find_packages
-
-PACKAGE = "helpful"
-NAME = "django-helpful"
-DESCRIPTION = "Django helpful things"
-AUTHOR = "Stanislav Baltrunas"
-AUTHOR_EMAIL = "stanislav@baltrunas.ru"
-URL = "https://github.com/Baltrunas/django-helpful"
-VERSION = __import__(PACKAGE).__version__
+# python setup.py register
+# python setup.py sdist upload
 
 setup(
-	name=NAME,
-	version=VERSION,
-	description=DESCRIPTION,
+	name="django-helpful",
+	version="1.0.0",
+	description="Django helpful things",
 	long_description=open('README.rst').read(),
-	author=AUTHOR,
-	author_email=AUTHOR_EMAIL,
+	author="Stanislav Baltrunas",
+	author_email="stanislav@baltrunas.ru",
 	license="BSD",
-	url=URL,
+	url="https://github.com/Baltrunas/django-helpful",
 	packages=find_packages(exclude=["tests.*", "tests"]),
-	# package_data=find_package_data(
-			# PACKAGE,
-			# only_in_packages=False
-	  # ),
 	classifiers=[
 		"Development Status :: 3 - Alpha",
 		"Environment :: Web Environment",

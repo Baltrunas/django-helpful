@@ -14,5 +14,5 @@ def get_br(obj):
 def breadcrumbs(context, obj):
 	context['breadcrumbs'] = reversed(get_br(obj))
 
-	tpl = template.loader.get_template('useful/breadcrumbs.html')
+	tpl = template.loader.get_template('helpful/breadcrumbs.html')
 	return tpl.render(template.Context(context))
