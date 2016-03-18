@@ -1,4 +1,5 @@
 from django import template
+from django.utils.safestring import mark_safe
 
 
 register = template.Library()
@@ -10,5 +11,5 @@ def render(context, content):
 		tpl = template.Template(content)
 		content = template.Context(context)
 		return tpl.render(content)
-	except:
-		return 'Render Error'
+	except Exception as e:
+		return mark_safe("<div cllass='b-error'>Render Error: <code>%s</code></div>" % e.message)

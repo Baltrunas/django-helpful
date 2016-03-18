@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
 	name="django-helpful",
-	version="1.0.2",
+	version="1.0.8",
 	description="Django helpful things",
 	long_description=open('README.rst').read(),
 	author="Stanislav Baltrunas",
@@ -12,6 +12,13 @@ setup(
 	license="BSD",
 	url="https://github.com/Baltrunas/django-helpful",
 	packages=find_packages(exclude=["tests.*", "tests"]),
+	package_data={
+		'templates' :['*'],
+		'static' :['*'],
+		'locale': ['*'],
+		'docs': ['*'],
+	},
+	include_package_data=True,
 	classifiers=[
 		"Development Status :: 3 - Alpha",
 		"Environment :: Web Environment",
