@@ -1,0 +1,2 @@
+recursive-include helpful/templates *
+recursive-include helpful/locale *
