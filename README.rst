@@ -10,8 +10,8 @@
     :target: https://pypi.python.org/pypi/django-helpful
 
 # Install
-* Copy to apps/useful or include as git submodule
-* Add ```'apps.useful',``` to ```INSTALLED_APPS ```
+* Copy to helpful or include as git submodule
+* Add ```'helpful',``` to ```INSTALLED_APPS ```
 
 ## Template Tags
 ### image2base64
@@ -43,6 +43,6 @@ template must be 'email/contacts'
 files 'email/contacts.html' and 'email/contacts.txt'
 must will exist
 ```
-from apps.useful.easy_email import mail
+from helpful.easy_email import mail
 mail(subject, context, template, from_email, to_email, connection=None)
 ```
