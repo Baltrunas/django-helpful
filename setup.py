@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
 	name="django-helpful",
-	version="1.0.8",
+	version="1.0.9",
 	description="Django helpful things",
 	long_description=open('README.rst').read(),
 	author="Stanislav Baltrunas",

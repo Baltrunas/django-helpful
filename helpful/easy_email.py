@@ -9,7 +9,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 
 
-def mail(subject, context, template, from_email, to_email, connection=None):
+def mail(subject, context, template, from_email, to_email, connection=None, reply_to=None):
 	html_template = render_to_string(template + '.html', context)
 	txt_template = render_to_string(template + '.txt', context)
 
@@ -17,7 +17,10 @@ def mail(subject, context, template, from_email, to_email, connection=None):
 	plinper.relative_url = 'file://localhost/'
 
 	html_email = plinper.from_string(html_template).run()
-	email = EmailMultiAlternatives(subject, txt_template, from_email, to_email)
+	if reply_to:
+		email = EmailMultiAlternatives(subject, txt_template, from_email, to_email, reply_to=reply_to)
+	else:
+		email = EmailMultiAlternatives(subject, txt_template, from_email, to_email)
 	email.mixed_subtype = 'related'
 
 	# Find all images in html
