@@ -5,7 +5,8 @@ from django.db.models.fields.files import FieldFile
 from django.db.models.signals import pre_delete, pre_save
 from django.dispatch import receiver
 
-if settings.hasattr(MEDIA_TRASH):
+
+if hasattr(settings, 'MEDIA_TRASH'):
 	def move2trash(field):
 		old_path = field.path
 		new_path = settings.MEDIA_TRASH + field.name

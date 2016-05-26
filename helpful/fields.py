@@ -1,3 +1,6 @@
+from django.db.models.fields.files import FieldFile
+
+
 def file_type(filename):
 	filename = filename.split('.')
 	filetype = filename[len(filename) - 1].lower()
@@ -26,8 +29,8 @@ def upload_to(instance, filename):
 		puth += current_field_name + '_'
 
 	# Name
-	if instance.hasattr('slug'):
-		name = instance.slug:
+	if hasattr(instance, 'slug'):
+		name = instance.slug
 	else:
 		name = '%s' % instance.id
 
