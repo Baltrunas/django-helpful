@@ -38,7 +38,6 @@ if hasattr(settings, 'MEDIA_TRASH'):
 				if issubclass(field.__class__, FieldFile):
 					previos_file = getattr(previos, field_name)
 					if previos_file != field:
-						print 'move!'
 						move2trash(previos_file)
 		except:
 			pass
