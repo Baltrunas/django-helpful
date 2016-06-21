@@ -22,10 +22,16 @@ if hasattr(settings, 'MEDIA_TRASH'):
 
 	@receiver(pre_delete)
 	def on_delete(sender, instance, *args, **kwargs):
-		for field_name, _ in instance.__dict__.iteritems():
-			field = getattr(instance, field_name)
-			if issubclass(field.__class__, FieldFile):
-				move2trash(previos_file)
+		try:
+			previos = sender.objects.get(id=instance.id)
+
+			for field_name, _ in instance.__dict__.iteritems():
+				field = getattr(instance, field_name)
+				if issubclass(field.__class__, FieldFile):
+					previos_file = getattr(previos, field_name)
+					move2trash(previos_file)
+		except:
+			pass
 
 
 	@receiver(pre_save)
