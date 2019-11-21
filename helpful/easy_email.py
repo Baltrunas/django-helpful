@@ -1,15 +1,16 @@
 import re
 import hashlib
 import pynliner
+import os
 
-from email.MIMEImage import MIMEImage
+from email.mime.image import MIMEImage
 
 from django.core.mail import EmailMultiAlternatives
 
 from django.template.loader import render_to_string
 
 
-def mail(subject, context, template, from_email, to_email, connection=None, reply_to=None):
+def mail(subject, context, template, from_email, to_email, connection=None, reply_to=None, attach_files=[], cc=None, bcc=None):
 	html_template = render_to_string(template + '.html', context)
 	txt_template = render_to_string(template + '.txt', context)
 
@@ -17,10 +18,8 @@ def mail(subject, context, template, from_email, to_email, connection=None, repl
 	plinper.relative_url = 'file://localhost/'
 
 	html_email = plinper.from_string(html_template).run()
-	if reply_to:
-		email = EmailMultiAlternatives(subject, txt_template, from_email, to_email, reply_to=reply_to)
-	else:
-		email = EmailMultiAlternatives(subject, txt_template, from_email, to_email)
+
+	email = EmailMultiAlternatives(subject, txt_template, from_email, to_email, reply_to=reply_to, сс=сс, bcc=bcc)
 	email.mixed_subtype = 'related'
 
 	# Find all images in html
@@ -41,6 +40,11 @@ def mail(subject, context, template, from_email, to_email, connection=None, repl
 
 		email.attach(img)
 		html_email = re.sub(img_path, 'cid:%s' % img_cid , html_email)
+
+	for attach_file in attach_files:
+		attachment = open(attach_file, 'rb')
+		file_name = os.path.basename(attach_file)
+		email.attach(file_name, attachment.read()) # , 'text/csv'
 
 	email.attach_alternative(html_email, "text/html")
 

@@ -12,7 +12,8 @@ def get_br(obj):
 
 @register.simple_tag(takes_context=True)
 def breadcrumbs(context, obj):
+	context = {}
 	context['breadcrumbs'] = reversed(get_br(obj))
 
 	tpl = template.loader.get_template('helpful/breadcrumbs.html')
-	return tpl.render(template.Context(context))
+	return tpl.render(context)

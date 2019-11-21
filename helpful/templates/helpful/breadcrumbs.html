@@ -15,7 +15,7 @@
 			<li itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem' class='b-breadcrumb'>
 				<a itemprop='item' href='{{ item.get_absolute_url }}' class='b-breadcrumb__url'>
 					<span itemprop='name'  class='b-breadcrumb__name'>
-						{% firstof item.name item.header item.title %}
+						{% firstof item.header item.title item.name %}
 					</span>
 				</a>
 				<meta itemprop='position' content='{{ forloop.counter }}'>
@@ -25,7 +25,7 @@
 			<li itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem' class='b-breadcrumb m-breadcrumb__last'>
 				<span itemprop='item' href='{{ item.get_absolute_url }}' class='b-breadcrumb__url'>
 					<span itemprop='name'  class='b-breadcrumb__name'>
-						{% firstof item.name item.header item.title %}
+						{% firstof item.header item.title item.name %}
 					</span>
 				</span>
 				<meta itemprop='position' content='{{ forloop.counter }}'>

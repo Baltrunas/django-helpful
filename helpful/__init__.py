@@ -1,2 +1,2 @@
-__version__ = '1.1.5'
+__version__ = '1.2.2'
 default_app_config = 'helpful.apps.HelpfulConfig'

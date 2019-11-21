@@ -30,7 +30,7 @@ def get_unique(instance):
 
 def get_field(instance, filename):
 	file_fields = []
-	for field_name, _ in instance.__dict__.iteritems():
+	for field_name, _ in instance.__dict__.items():
 		field = getattr(instance, field_name)
 		if issubclass(field.__class__, FieldFile):
 			file_fields.append(field_name)
