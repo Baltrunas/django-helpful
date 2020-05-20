@@ -4,9 +4,10 @@ from setuptools import setup, find_packages
 
 setup(
 	name="django-helpful",
-	version="1.4.3",
+	version="1.5.4",
 	description="Django helpful things",
 	long_description=open('README.rst').read(),
+	long_description_content_type="text/markdown",
 	author="Stanislav Baltrunas",
 	author_email="stanislav@baltrunas.ru",
 	license="BSD",

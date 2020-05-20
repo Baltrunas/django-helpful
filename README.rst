@@ -1,4 +1,6 @@
-# A handful of utilities for Django!
+==================================
+A handful of utilities for Django!
+==================================
 
 .. image:: https://img.shields.io/pypi/v/django-helpful.svg
     :target: https://pypi.python.org/pypi/django-helpful
@@ -9,40 +11,55 @@
 .. image:: https://img.shields.io/pypi/l/django-helpful.svg
     :target: https://pypi.python.org/pypi/django-helpful
 
-# Install
+
+*******
+Install
+*******
+
 * Copy to helpful or include as git submodule
 * Add ```'helpful',``` to ```INSTALLED_APPS ```
+* Add ```EMAIL_DEBUG``` to ```settings.py``` for use debug email mode.
 
-## Template Tags
-### image2base64
+
+Template Tags
+-------------
+image2base64
+^^^^^^^^^^^^
 convert image to base64
-```
-{% image2base64 "image.png" %}
-```
 
-### object_dict
-```
-{% load object_dict %}
-{% for field in message|object_dict %}
-	{{ field.verbose_name }}
-	{{ field.display }}
-{% endfor %}
-```
+.. code-block:: html
 
-### abs_puth
-```
-{% load abs_puth %}
-{% abs_puth "static" "templates/e-mail/css/style.css" %}
-{% abs_puth "media" "templates/e-mail/css/style.css" %}
-{% abs_puth "base" "templates/e-mail/css/style.css" %}
-{% abs_puth "parent" "templates/e-mail/css/style.css" %}
-```
+    {% image2base64 "image.png" %}
 
-# easy_email
+object_dict
+^^^^^^^^^^^
+.. code-block:: html
+
+    {% load object_dict %}
+    {% for field in message|object_dict %}
+        {{ field.verbose_name }}
+        {{ field.display }}
+    {% endfor %}
+
+abs_puth
+^^^^^^^^
+.. code-block:: html
+
+    {% load abs_puth %}
+    {% abs_puth "static" "templates/e-mail/css/style.css" %}
+    {% abs_puth "media" "templates/e-mail/css/style.css" %}
+    {% abs_puth "base" "templates/e-mail/css/style.css" %}
+    {% abs_puth "parent" "templates/e-mail/css/style.css" %}
+
+
+easy_email
+==========
+
 template must be 'email/contacts'
 files 'email/contacts.html' and 'email/contacts.txt'
 must will exist
-```
-from helpful.easy_email import mail
-mail(subject, context, template, from_email, to_email, connection=None)
-```
+
+.. code-block:: hpython
+
+    from helpful.easy_email import mail
+    mail(subject, context, template, from_email, to_email, connection=None, reply_to=None, attach_files=[], cc=None, bcc=None)
