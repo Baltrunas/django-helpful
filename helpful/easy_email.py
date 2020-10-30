@@ -16,23 +16,24 @@ def mail(subject, context, template, from_email, to_email, connection=None, repl
 	txt_template = render_to_string(template + '.txt', context)
 
 	# email debug mode
-	if settings.DEBUG:
-		if hasattr(settings, 'EMAIL_DEBUG'):
-			if not cc:
-				cc = []
-			if not bcc:
-				bcc = []
+	if hasattr(settings, 'EMAIL_DEBUG'):
+		if not cc:
+			cc = []
+		if not bcc:
+			bcc = []
+
+		if hasattr(settings, 'EMAIL_DEBUG_INFO') and settings.EMAIL_DEBUG_INFO:
 			pre_info = 'to_email: ' + ', '.join(to_email) + '\n'\
 							+ 'cc: ' + ', '.join(cc) + '\n'\
-							+ 'cc: ' + ', '.join(bcc)
+							+ 'bcc: ' + ', '.join(bcc)
 			html_template = '<pre>' + pre_info + '\n\n</pre>' + html_template
 			txt_template = pre_info + '\n\n' + txt_template
 
-			to_email = settings.EMAIL_DEBUG
-			cc = None
-			bcc = None
-		else:
-			return
+		to_email = settings.EMAIL_DEBUG
+		cc = None
+		bcc = None
+	elif settings.DEBUG:
+		return
 
 	plinper = pynliner.Pynliner()
 	plinper.relative_url = 'file://localhost/'
